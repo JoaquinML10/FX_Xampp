@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="341.0" prefWidth="573.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.xampp_fx.HelloController">
+  <padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+  </padding>
+
+  <Label fx:id="welcomeText" prefHeight="0.0" prefWidth="471.0" />
+   <TableView fx:id="TableViewPerson" prefHeight="200.0" prefWidth="200.0">
+     <columns>
+       <TableColumn prefWidth="75.0" text="NIA" />
+       <TableColumn prefWidth="75.0" text="Nombre" />
+         <TableColumn prefWidth="75.0" text="Fecha de nacimiento" />
+     </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
+   </TableView>
+   <TextField fx:id="TextoNIA" promptText="Intodusca el NIA" />
+   <TextField fx:id="Textonombre" promptText="Introdusca el nombre" />
+   <DatePicker fx:id="Fechanacimiento" promptText="Fecha de nacimiento" />
+   <Button mnemonicParsing="false" onAction="#onHelloButtonClick" text="Insertar" />
+   <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Button" textAlignment="CENTER" />
+</VBox>
