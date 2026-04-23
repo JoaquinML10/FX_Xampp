@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.practica.HelloController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.practica.HelloController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label fx:id="welcomeText" />
+   <TableView fx:id="tableViewPersonas" prefHeight="237.0" prefWidth="629.0">
+     <columns>
+       <TableColumn fx:id="viewColumNIA" prefWidth="75.0" text="NIA" />
+       <TableColumn fx:id="viewColumNombre" prefWidth="75.0" text="Nombre" />
+         <TableColumn fx:id="viewColumFecha" prefWidth="75.0" text="Fecha de nacimiento" />
+         <TableColumn prefWidth="75.0" />
+     </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
+   </TableView>
+   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Button fx:id="edtitarButton" mnemonicParsing="false" onAction="#onEdtitarButton" text="Editar" />
+          <Button fx:id="eliminarButton" onAction="#onEliminarButton" text="Eliminar" />
+      </children>
+   </HBox>
+   <TextField fx:id="textNIA" promptText="Introduce NIA" />
+   <TextField fx:id="textNombre" promptText="Introduce tu nombre" />
+   <DatePicker fx:id="textFecha" promptText="Fecha de nacimiento" />
+   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Button fx:id="insertarButton" mnemonicParsing="false" onAction="#onInsertarButton" text="Insertar" />
+         <Button fx:id="guardarButton" disable="true" mnemonicParsing="false" onAction="#onGuardarButton" text="Guardar" />
+      </children>
+   </HBox>
 </VBox>

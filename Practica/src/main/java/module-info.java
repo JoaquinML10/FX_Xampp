@@ -10,6 +10,8 @@ module org.example.practica {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
+    requires org.mariadb.jdbc;
 
     opens org.example.practica to javafx.fxml;
     exports org.example.practica;
