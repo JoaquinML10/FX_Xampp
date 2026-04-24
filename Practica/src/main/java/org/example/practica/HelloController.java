@@ -22,6 +22,9 @@ public class HelloController {
     private Connection conection = main.conexion();
 
     @FXML
+    private Label textLabel;
+
+    @FXML
     private TableView<Estudiante> tableViewPersonas;
 
     @FXML
@@ -52,9 +55,8 @@ public class HelloController {
         viewColumFecha.setCellValueFactory(datos ->
                 new ReadOnlyObjectWrapper<>(datos.getValue().getFecha_nacimiento()));
 
-        ObservableList<Estudiante> listaEstudiantes = FXCollections.observableArrayList();
+        tableViewPersonas.setItems(main.consulta_a_lista(conection));
 
-        listaEstudiantes = main.consulta_a_lista();
     }
 
     @FXML
@@ -62,8 +64,21 @@ public class HelloController {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
-    @FXML
+
     public void onEdtitarButton() {
+        Estudiante seleccionado = tableViewPersonas.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null){
+            textLabel.setText("No hay nada seleccionado");
+        }else {
+            insertarButton.setDisable(true);
+            guardarButton.setDisable(false);
+            textNIA.setText(seleccionado.getNia().toString());
+            textNombre.setText(seleccionado.getNombre());
+            textFecha.setValue(seleccionado.getFecha_nacimiento());
+
+            textLabel.setText("Estudiante modificado");
+        }
     }
 
     @FXML
@@ -76,18 +91,31 @@ public class HelloController {
         String nombre = textNombre.getText();
         LocalDate fecha = textFecha.getValue();
 
-        Estudiante estudiante = new Estudiante(nia, nombre, fecha);
-
         System.out.println("Estudiante creado: NIA: " + nia + " Nombre: " + nombre + " Fecha " + fecha );
 
-        main.insertar(conection, estudiante);
+        main.insertar(conection, new Estudiante(nia, nombre, fecha));
 
         textNIA.clear();
         textNombre.clear();
+        textFecha.setValue(null);
 
     }
 
     @FXML
     public void onGuardarButton() {
+        Integer nia = Integer.parseInt(textNIA.getText());
+        String nombre = textNombre.getText();
+        LocalDate fecha = textFecha.getValue();
+
+        main.modificar(conection,new Estudiante(nia,nombre,fecha));
+
+        insertarButton.setDisable(false);
+        guardarButton.setDisable(true);
+        textNIA.clear();
+        textNombre.clear();
+        textFecha.setValue(null);
+
+        tableViewPersonas.setItems(main.consulta_a_lista(conection));
     }
+
 }

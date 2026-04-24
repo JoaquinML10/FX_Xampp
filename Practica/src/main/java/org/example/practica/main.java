@@ -1,5 +1,8 @@
 package org.example.practica;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,9 +49,10 @@ public class main {
         }
     }
 
-    public static void consulta_a_lista (Connection conexion){
+    public static ObservableList<Estudiante> consulta_a_lista (Connection conexion){
 
-        listaEstudiantes.clear();
+
+        ObservableList<Estudiante> listaEstudiantes = FXCollections.observableArrayList();
 
         String query = "SELECT * FROM estudiantes";
 
@@ -73,13 +77,15 @@ public class main {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
+        return  listaEstudiantes;
     }
 
     public static void insertar(Connection conexion, Estudiante estudiante){
 
         System.out.println("Insertando...");
 
-        String query = "INSERT INTO estudiantes (nia, nombre, fecha_nacimiento) VALUES (43214321, 'Patricia', '1900-04-19');";
+        String query = "INSERT INTO `estudiantes` (`nia`, `nombre`, `fecha_nacimiento`) VALUES ('" + estudiante.getNia() + estudiante.getNombre() + estudiante.getFecha_nacimiento() +
+        ")";
 
         Statement stmt;
 
@@ -94,11 +100,12 @@ public class main {
     }
 
 
-    public static void modificar(Connection conexion){
+    public static void modificar(Connection conexion, Estudiante estudiante){
 
         System.out.println("Modificando...");
 
-        String query = "UPDATE estudiantes SET nombre = 'Patri' WHERE nombre = 'Patricia'";
+        String query = "UPDATE estudiantes SET nia = '" + estudiante.getNia() + "', " + " nombre = '" + estudiante.getNombre() + "', fecha_nacimiento = '"
+                + estudiante.getFecha_nacimiento() + "' where nia = '" + estudiante.getNia() + "'";
 
         Statement stmt;
 

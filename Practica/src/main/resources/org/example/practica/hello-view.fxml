@@ -8,7 +8,7 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Label fx:id="welcomeText" />
+    <Label fx:id="textLabel" prefHeight="17.0" prefWidth="363.0" />
    <TableView fx:id="tableViewPersonas" prefHeight="237.0" prefWidth="629.0">
      <columns>
        <TableColumn fx:id="viewColumNIA" prefWidth="75.0" text="NIA" />

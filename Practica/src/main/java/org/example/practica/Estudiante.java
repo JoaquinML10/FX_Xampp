@@ -4,21 +4,21 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class Estudiante {
-    private int nia;
+    private Integer nia;
     private String nombre;
     private LocalDate fecha_nacimiento;
 
-    public Estudiante(int nia, String nombre, LocalDate fecha_nacimiento) {
+    public Estudiante(Integer nia, String nombre, LocalDate fecha_nacimiento) {
         this.nia = nia;
         this.nombre = nombre;
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public int getNia() {
+    public Integer getNia() {
         return nia;
     }
 
-    public void setNia(int nia) {
+    public void setNia(Integer nia) {
         this.nia = nia;
     }
 
