@@ -84,8 +84,7 @@ public class main {
 
         System.out.println("Insertando...");
 
-        String query = "INSERT INTO `estudiantes` (`nia`, `nombre`, `fecha_nacimiento`) VALUES ('" + estudiante.getNia() + estudiante.getNombre() + estudiante.getFecha_nacimiento() +
-        ")";
+        String query = "INSERT INTO estudiantes (nia, nombre, fecha_nacimiento) VALUES (" + estudiante.getNia() + ", '" + estudiante.getNombre() + "', '" + estudiante.getFecha_nacimiento() + "')";
 
         Statement stmt;
 
@@ -119,11 +118,11 @@ public class main {
 
     }
 
-    public static void borrar(Connection conexion){
+    public static void borrar(Connection conexion, Estudiante estudiante){
 
         System.out.println("Borrando...");
 
-        String query = "DELETE FROM estudiantes WHERE nombre = 'Patri'";
+        String query = "DELETE FROM estudiantes WHERE nia = " + estudiante.getNia();
 
         Statement stmt;
 

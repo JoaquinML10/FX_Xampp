@@ -64,7 +64,7 @@ public class HelloController {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
-
+    @FXML
     public void onEdtitarButton() {
         Estudiante seleccionado = tableViewPersonas.getSelectionModel().getSelectedItem();
 
@@ -74,15 +74,28 @@ public class HelloController {
             insertarButton.setDisable(true);
             guardarButton.setDisable(false);
             textNIA.setText(seleccionado.getNia().toString());
+            textNIA.setDisable(true);
             textNombre.setText(seleccionado.getNombre());
             textFecha.setValue(seleccionado.getFecha_nacimiento());
 
             textLabel.setText("Estudiante modificado");
         }
+
+        tableViewPersonas.setItems(main.consulta_a_lista(conection));
     }
 
     @FXML
     public void onEliminarButton() {
+        Estudiante estudiante = tableViewPersonas.getSelectionModel().getSelectedItem();
+
+        if (estudiante == null){
+            textLabel.setText("NO HAS SELECCIONADO");
+        }else {
+            main.borrar(conection,estudiante);
+            textLabel.setText("Estudiante borrado");
+        }
+
+        tableViewPersonas.setItems(main.consulta_a_lista(conection));
     }
 
     @FXML
@@ -98,12 +111,13 @@ public class HelloController {
         textNIA.clear();
         textNombre.clear();
         textFecha.setValue(null);
-
+        tableViewPersonas.setItems(main.consulta_a_lista(conection));
     }
 
     @FXML
     public void onGuardarButton() {
         Integer nia = Integer.parseInt(textNIA.getText());
+        textNIA.setDisable(true);
         String nombre = textNombre.getText();
         LocalDate fecha = textFecha.getValue();
 
@@ -112,6 +126,7 @@ public class HelloController {
         insertarButton.setDisable(false);
         guardarButton.setDisable(true);
         textNIA.clear();
+        textNIA.setDisable(false);
         textNombre.clear();
         textFecha.setValue(null);
 
