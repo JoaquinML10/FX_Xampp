@@ -86,16 +86,96 @@ public class Ficheros {
         File[] ficheros = carpeta.listFiles();
         if (ficheros != null) {
             for (File nombre : ficheros) {
-                if (nombre.isFile() && nombre.exists()) {
+                if (nombre.isFile() && nombre.getName().endsWith(extension)) {
                     System.out.println(nombre.getName() + " tamaño: " + nombre.length());
                 }
             }
         }
     }
 
+    public static void actividad6() {
+        System.out.println("Introduce la palabra a buscar: ");
+        String palabra = teclado.next();
 
+        int contador = 0;
 
+        try {
+            BufferedReader reader = new BufferedReader(
+                    new FileReader("src/main/resources/pruebas/ejemplo1.txt")
+            );
 
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] palabras = linea.split(" ");
+                for (String p : palabras) {
+                    if (p.equalsIgnoreCase(palabra)) {
+                        contador++;
+                    }
+                }
+            }
+
+            reader.close();
+            System.out.println("La palabra '" + palabra + "' aparece " + contador + " veces.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void actividad7() {
+        System.out.println("Introduce la palabra a buscar: ");
+        String palabra = teclado.next();
+
+        int contador = 0;
+
+        try {
+            Scanner lector = new Scanner(
+                    new File("src/main/resources/pruebas/ejemplo1.txt")
+            );
+
+            while (lector.hasNext()) {
+                String palabraLeida = lector.next();
+                if (palabraLeida.equalsIgnoreCase(palabra)) {
+                    contador++;
+                }
+            }
+
+            lector.close();
+            System.out.println("La palabra '" + palabra + "' aparece " + contador + " veces.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void actividad8() {
+        System.out.println("Cuantos archivos quieres crear: ");
+        int num = teclado.nextInt();
+
+        System.out.println("En que carpeta los quieres guardar? (ej: pruebas): ");
+        String nombre_carpeta = teclado.next();
+
+        for (int i = 1; i <= num; i++) {
+            File archivo = new File(
+                    "src/main/resources/" + nombre_carpeta + "/nombre(" + i + ").txt"
+            );
+            try {
+                if (archivo.createNewFile()) {
+                    System.out.println("Archivo creado correctamente: " + archivo.getName());
+
+                    // Escribimos la frase dentro del archivo recién creado
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(archivo));
+                    writer.write("Este es el fichero nombre(" + i + ").txt");
+                    writer.close();
+
+                } else {
+                    System.out.println("Archivo no creado o ya existente: " + archivo.getName());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public static void crearFicheros(int num){
         System.out.println("En que carpeta lo quieres?");
         String nombre_carpeta = teclado.next();
