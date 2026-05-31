@@ -12,7 +12,10 @@ module org.example.practica {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires org.mariadb.jdbc;
+    requires com.google.gson;
 
+    opens org.example.practica.Practica4 to com.google.gson;
     opens org.example.practica to javafx.fxml;
     exports org.example.practica;
+
 }

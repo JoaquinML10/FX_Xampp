@@ -1,0 +1,46 @@
+[
+  {
+    "nombre": "the last of us",
+    "plataforma": "sony",
+    "precio": 35.0,
+    "disponible": true,
+    "genero": [
+      "accin",
+      "romance",
+      "triste"
+    ]
+  },
+  {
+    "nombre": "uncharted",
+    "plataforma": "steam",
+    "precio": 25.0,
+    "disponible": true,
+    "genero": [
+      "accion",
+      "aventura",
+      "acertijos"
+    ]
+  },
+  {
+    "nombre": "mario kart",
+    "plataforma": "nintendo",
+    "precio": 90.0,
+    "disponible": false,
+    "genero": [
+      "carreras",
+      "accion",
+      "suerte"
+    ]
+  },
+  {
+    "nombre": "elden ring",
+    "plataforma": "xbox",
+    "precio": 29.0,
+    "disponible": true,
+    "genero": [
+      "accion",
+      "dificil",
+      "jefes"
+    ]
+  }
+]
